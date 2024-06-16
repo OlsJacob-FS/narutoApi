@@ -1,3 +1,9 @@
+const express = require("express");
+require("dotenv").config();
+const mongoose = require("mongoose");
+const path = require("path");
+const cors = require("cors");
+
 const app = express();
 app.use(cors());
 //Assign port from host provider || run on port 5000
@@ -12,11 +18,11 @@ db.once("open", () => console.log("Connected to database"));
 app.use(express.json());
 app.use("/api/v1/characters", characterRouter);
 
-app.use(express.static(path.join(__dirname, "../reactJs/build")));
+//app.use(express.static(path.join(__dirname, "../reactJs/build")));
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../reactJs/build", "index.html"));
-});
+//app.get("/*", (req, res) => {
+// res.sendFile(path.join(__dirname, "../reactJs/build", "index.html"));
+//});
 
 mongoose.connect(DATABASE_URL, { useNewUrlParser: true });
 app.listen(PORT, () => {

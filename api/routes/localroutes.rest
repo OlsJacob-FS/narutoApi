@@ -1,11 +1,11 @@
-GET http://localhost:8000/characters
+GET http://localhost:8000/api/v1/characters
 
 ###
 
-GET http://localhost:8000/characters/666f0bb31f3eaebb6ceb719f
+GET http://localhost:8000/api/v1/characters/666f0bb31f3eaebb6ceb719f
 
 ###
-POST http://localhost:8000/characters
+POST http://localhost:8000/api/v1/characters
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:8000/characters/666f0bb31f3eaebb6ceb719f
+PATCH http://localhost:8000/api/v1/characters/666f0bb31f3eaebb6ceb719f
 Content-Type: application/json
 
 {
@@ -26,6 +26,6 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8000/characters/666f0bb31f3eaebb6ceb719f
+DELETE http://localhost:8000/api/v1/characters/666f0bb31f3eaebb6ceb719f
 
 ###
