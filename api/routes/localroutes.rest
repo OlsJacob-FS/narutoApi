@@ -1,0 +1,31 @@
+GET http://localhost:8000/characters
+
+###
+
+GET http://localhost:8000/characters/666f0bb31f3eaebb6ceb719f
+
+###
+POST http://localhost:8000/characters
+Content-Type: application/json
+
+{
+    "name": "Susake",
+    "age": 17,
+    "villiage": "Leaf Villiage"
+}
+
+###
+PATCH http://localhost:8000/characters/666f0bb31f3eaebb6ceb719f
+Content-Type: application/json
+
+{
+    "name": "Lee",
+    "age": 17,
+    "villiage": "Leaf Villiage"
+}
+
+###
+
+DELETE http://localhost:8000/characters/666f0bb31f3eaebb6ceb719f
+
+###
