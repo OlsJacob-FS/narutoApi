@@ -18,11 +18,11 @@ db.once("open", () => console.log("Connected to database"));
 app.use(express.json());
 app.use("/api/v1/characters", characterRouter);
 
-//app.use(express.static(path.join(__dirname, "../reactJs/build")));
+app.use(express.static(path.join(__dirname, "../reactjs/build")));
 
-//app.get("/*", (req, res) => {
-// res.sendFile(path.join(__dirname, "../reactJs/build", "index.html"));
-//});
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../reactjs/build", "index.html"));
+});
 
 mongoose.connect(DATABASE_URL, { useNewUrlParser: true });
 app.listen(PORT, () => {
