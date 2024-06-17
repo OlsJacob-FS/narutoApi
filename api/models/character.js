@@ -16,7 +16,7 @@ const characterSchema = new mongoose.Schema({
     minlength: 3,
     maxlength: 500,
   },
-  villiage: {
+  village: {
     type: String,
     required: true,
     trim: true,

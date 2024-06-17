@@ -9,9 +9,9 @@ POST http://localhost:8000/api/v1/characters
 Content-Type: application/json
 
 {
-    "name": "Susake",
-    "age": 17,
-    "villiage": "Leaf Villiage"
+    "name": "Minato",
+    "age": 22,
+    "village": "Leaf Villiage"
 }
 
 ###
