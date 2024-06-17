@@ -56,7 +56,7 @@ function Character() {
         .then((res) => res.json())
         .then((data) => {
           setCharacters(data);
-          navigate("/dashboard", { replace: true });
+          navigate("/", { replace: true });
         });
     } catch {}
   };
@@ -104,8 +104,6 @@ function Character() {
           <li>{values && values.village}</li>
         </ul>
         <button onClick={() => deleteCharacter()}>Delete Character</button>
-        <Link to="/Dashboard">Dashboard</Link>
-        <Link to="/">Home</Link>
 
         <form onSubmit={(event) => handleSubmit(event)}>
           <label>

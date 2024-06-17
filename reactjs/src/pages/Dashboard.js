@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../App.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const [characters, setCharacters] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     name: "",
@@ -18,31 +20,6 @@ function Dashboard() {
       ? "http://localhost:8000/api/v1"
       : process.env.REACT_APP_BASE_URL;
 
-  let ignore = false;
-
-  useEffect(() => {
-    if (!ignore) {
-      getCharacters();
-    }
-    return () => {
-      ignore = true;
-    };
-  }, []);
-
-  const getCharacters = async () => {
-    setLoading(true);
-    try {
-      await fetch(`${API_BASE}/characters`)
-        .then((res) => res.json())
-        .then((data) => {
-          setCharacters(data);
-        });
-    } catch (error) {
-      setError(error.message || "Unexpected Error");
-    } finally {
-      setLoading(false);
-    }
-  };
   //POST
   const createCharacter = async () => {
     try {
@@ -52,7 +29,8 @@ function Dashboard() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
-      }).then(() => getCharacters());
+      });
+      navigate("/", { replace: true });
     } catch (error) {
       setError(error.message || "Unexpected Error");
     } finally {
@@ -74,49 +52,42 @@ function Dashboard() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Dashboard Page</h1>
-        <Link to="/">Home</Link>
-        <ul>
-          {characters?.map((character, i) => (
-            <li key={i}>
-              <Link to={`/characters/${character._id}`}>{character.name}</Link>
-            </li>
-          ))}
-        </ul>
+    <div className="App-header">
+      <div className="formDiv">
+        <form onSubmit={(event) => handleSubmit(event)} className="formDash">
+          <h1>Create a Shinobi</h1>
+          <input
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={handleInputChanges}
+            placeholder="Name"
+            className="formInput"
+          />
 
-        <form onSubmit={(event) => handleSubmit(event)}>
-          <label>
-            name:
-            <input
-              type="text"
-              name="name"
-              value={values.name}
-              onChange={handleInputChanges}
-            />
-          </label>
-          <label>
-            age:
-            <input
-              type="text"
-              name="age"
-              value={values.age}
-              onChange={handleInputChanges}
-            />
-          </label>
-          <label>
-            Village:
-            <input
-              type="text"
-              name="village"
-              value={values.village}
-              onChange={handleInputChanges}
-            />
-          </label>
-          <input type="submit" value="Submit" />
+          <input
+            type="text"
+            name="age"
+            value={values.age}
+            onChange={handleInputChanges}
+            placeholder="Age"
+            className="formInput"
+          />
+
+          <input
+            type="text"
+            name="village"
+            value={values.village}
+            onChange={handleInputChanges}
+            placeholder="Home Village"
+            className="formInput"
+          />
+
+          <button type="submit" value="Submit" className="formButton">
+            Create Shinobi
+          </button>
         </form>
-      </header>
+      </div>
     </div>
   );
 }
