@@ -1,0 +1,34 @@
+.card {
+  align-items: center;
+  justify-content: center;
+  margin: 25px auto;
+  background-color: #cfd3ce;
+  width: 400px;
+  height: 430px;
+  border-radius: 15px;
+}
+.cardText {
+  font-size: 2.6rem;
+  margin-top: 15px;
+  color: black;
+}
+.cardDeleteBtn {
+  background-color: #dc143c;
+  margin-bottom: 15px;
+  width: 140px;
+  height: 45px;
+  font-size: 1rem;
+}
+.cardEditBtn {
+  background-color: #6248c9;
+  margin-bottom: 25px;
+  width: 140px;
+  height: 45px;
+  font-size: 1rem;
+}
+.btnDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
