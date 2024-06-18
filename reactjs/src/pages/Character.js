@@ -2,6 +2,8 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../App.css";
 
+import Card from "../components/card/Card";
+
 function Character() {
   const [characters, setCharacters] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -12,6 +14,8 @@ function Character() {
     age: "",
     village: "",
   });
+
+  let [show, setShow] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -73,6 +77,7 @@ function Character() {
         .then((res) => res.json())
         .then((data) => {
           console.log({ data });
+          navigate("/", { replace: true });
         });
     } catch (error) {
       setError(error.message || "Unexpected Error");
@@ -97,44 +102,54 @@ function Character() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Character Page</h1>
-        <ul>
-          <li>{values && values.name}</li>
-          <li>{values && values.age}</li>
-          <li>{values && values.village}</li>
-        </ul>
-        <button onClick={() => deleteCharacter()}>Delete Character</button>
+        <h1>Meet {values.name}</h1>
 
-        <form onSubmit={(event) => handleSubmit(event)}>
-          <label>
-            name:
-            <input
-              type="text"
-              name="name"
-              value={values.name}
-              onChange={handleInputChanges}
-            />
-          </label>
-          <label>
-            age:
-            <input
-              type="text"
-              name="age"
-              value={values.age}
-              onChange={handleInputChanges}
-            />
-          </label>
-          <label>
-            Village:
-            <input
-              type="text"
-              name="village"
-              value={values.village}
-              onChange={handleInputChanges}
-            />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+        <Card
+          name={values.name}
+          age={values.age}
+          village={values.village}
+          deleteBtn={() => deleteCharacter()}
+          dele="Delete Shinobi"
+          editBtn={() => setShow(!show)}
+          edit="Edit Shinobi"
+        />
+
+        {show && (
+          <form onSubmit={(event) => handleSubmit(event)} className="editForm">
+            <h2>Edit Shinobi</h2>
+            <label>
+              Name:
+              <input
+                type="text"
+                name="name"
+                value={values.name}
+                onChange={handleInputChanges}
+                className="editInputs"
+              />
+            </label>
+            <label>
+              Age:
+              <input
+                type="text"
+                name="age"
+                value={values.age}
+                onChange={handleInputChanges}
+                className="editInputs"
+              />
+            </label>
+            <label>
+              Village:
+              <input
+                type="text"
+                name="village"
+                value={values.village}
+                onChange={handleInputChanges}
+                className="editInputs"
+              />
+            </label>
+            <input type="submit" value="Submit" className="editFormBtn" />
+          </form>
+        )}
       </header>
     </div>
   );

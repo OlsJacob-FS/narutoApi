@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   justify-content: center;
-  background-color: #282c34;
+  background-color: #5c361e;
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
@@ -10,7 +10,7 @@
 .App-header {
   text-align: center;
   justify-content: center;
-  background-color: #282c34;
+  background-color: #5c361e;
   min-height: 80vh;
   display: flex;
   flex-direction: column;
@@ -84,4 +84,29 @@
   margin: 10px;
   width: 200px;
   background-color: #d2691e;
+}
+
+.editForm {
+  border: thick double #32a1ce;
+  border-radius: 5px;
+  width: 500px;
+  display: grid;
+  grid-row: inherit;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.editInputs {
+  height: 2rem;
+  margin: 10px;
+  width: auto;
+  border-radius: 10px;
+}
+.editFormBtn {
+  background-color: #32a1ce;
+  margin-bottom: 15px;
+  width: auto;
+  height: 45px;
+  font-size: 1rem;
 }
