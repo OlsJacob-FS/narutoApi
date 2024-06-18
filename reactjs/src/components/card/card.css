@@ -4,7 +4,7 @@
   margin: 25px auto;
   background-color: #cfd3ce;
   width: 400px;
-  height: 430px;
+  height: auto;
   border-radius: 15px;
 }
 .cardText {
