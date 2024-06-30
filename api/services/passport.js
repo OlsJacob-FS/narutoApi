@@ -24,9 +24,9 @@ localStrategy = new localStrategy(localOptions, function (
         return done(error, false);
       }
       if (!isMatch) {
-        return done(null, user);
+        return done(null, false);
       } else {
-        done(null, false);
+        done(null, user);
       }
     });
   });
