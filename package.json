@@ -15,6 +15,9 @@
     "api": "cd server; nodemon server.js"
   },
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "bcrypt-nodejs": "^0.0.3",
+    "concurrently": "^8.2.2",
+    "jwt-simple": "^0.5.6",
+    "passport-local": "^1.0.0"
   }
 }

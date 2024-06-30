@@ -3,7 +3,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
-
+const authRouter = require("./routes/auth");
 const app = express();
 app.use(cors());
 //Assign port from host provider || run on port 5000
@@ -17,6 +17,7 @@ db.once("open", () => console.log("Connected to database"));
 
 app.use(express.json());
 app.use("/api/v1/characters", characterRouter);
+app.use("/api/v1/auth", authRouter);
 
 app.use(express.static(path.join(__dirname, "../reactjs/build")));
 
