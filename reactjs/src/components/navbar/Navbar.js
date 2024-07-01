@@ -17,7 +17,7 @@ export default function Navbar() {
               Login
             </a>
             <a href="/signup" className="navText">
-              Signup
+              Sign-up
             </a>
           </ul>
         </nav>
