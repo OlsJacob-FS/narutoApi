@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import authService from "../services/auth.service";
+import characterService from "../services/character.service";
+
 import "../App.css";
 
 function Home() {
@@ -7,26 +11,40 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const [values, setValues] = useState({
-    name: "",
-    age: "",
-    village: "",
-  });
+  // const [values, setValues] = useState({
+  //   name: "",
+  //   age: "",
+  //   village: "",
+  // });
+
+  const navigate = useNavigate();
 
   const API_BASE =
     process.env.NODE_ENV === "development"
       ? "http://localhost:8000/api/v1"
       : process.env.REACT_APP_BASE_URL;
 
-  let ignore = false;
+  // let ignore = false;
 
   useEffect(() => {
-    if (!ignore) {
-      getCharacters();
-    }
-    return () => {
-      ignore = true;
-    };
+    characterService.getAllPrivateCharacters().then(
+      (response) => {
+        setCharacters(response.data);
+      },
+      (error) => {
+        console.log("secure page error", error);
+        if (error.response && error.response.status === 403) {
+          authService.logout();
+          navigate("/login");
+        }
+      }
+    );
+    // if (!ignore) {
+    getCharacters();
+    // }
+    // return () => {
+    //   ignore = true;
+    // };
   }, []);
 
   const getCharacters = async () => {
@@ -43,6 +61,7 @@ function Home() {
       setLoading(false);
     }
   };
+
   return (
     <div className="App-header">
       <div className="App">

@@ -13,6 +13,12 @@ export default function Navbar() {
             <a href="/dashboard" className="navText">
               Create
             </a>
+            <a href="/login" className="navText">
+              Login
+            </a>
+            <a href="/signup" className="navText">
+              Sign-up
+            </a>
           </ul>
         </nav>
       </div>
